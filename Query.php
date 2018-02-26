@@ -94,11 +94,11 @@ class Query extends Component implements QueryInterface
         if (empty($this->filter)) {
             throw new InvalidValueException('You must define a filter for the search.');
         }
-        
+
         $select = (is_array($this->select)) ? $this->select : [];
         
-        if(ctype_digit((string) $this->limit)){
-            $db->pageSize = $this->limit;            
+        if(ctype_digit((string) $this->limit) && $db->pageSize > 0){
+            $db->pageSize = $this->limit;
         }        
         if(ctype_digit((string) $this->offset)){
             $db->offset = $this->offset == 0 ? 1 : $this->offset;
